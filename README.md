@@ -2,7 +2,13 @@ Bilgehan Kilinc Udacity Machine Learning Capstone Project
 
 Ashrea Energy Prediction III Kaggle Competition
 
-In this project folder there are 3 folders, 2 .ipynb notebooks and 4 .py scripts. 
+In this project folder there are 2 .ipynb notebooks and 4 .py scripts. 
+
+This project requires latest anaconda navigator and an updated conda environment with python 3.7 or later.
+
+First download this Repo into a folder.
+
+Second please download data from https://www.kaggle.com/c/ashrae-energy-prediction/data and put it into a folder named 'aep-data' in repo folder you downloaded at first step.
 
 The reproducing process of codes in the report is:
     

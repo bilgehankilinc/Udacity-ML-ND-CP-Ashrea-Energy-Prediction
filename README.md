@@ -1,6 +1,8 @@
 # Udacity-ML-ND-CP-Ashrea-Energy-Prediction
 Ashrea Energy Prediction III Kaggle Competition Capstone Project for Udacity Machine Learning Nanodegree December 2019
 
+This project requires latest anaconda navigator and an updated conda environment with python 3.7 or later.
+
 First download this Repo into a folder.
 
 Second please download data from https://www.kaggle.com/c/ashrae-energy-prediction/data and put it into a folder named 'aep-data' in repo folder you downloaded at first step.

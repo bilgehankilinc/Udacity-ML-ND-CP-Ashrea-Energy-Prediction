@@ -28,9 +28,9 @@ l_least_important_features = ['is_weekend', 'is_semester_on', 'dayofweek', 'wind
 
 df_X = df_X.drop(l_least_important_features, axis=1)
 
-# Create X, X_given_test and y variables
+# Create X, X_given_test and y variables. Also Log Transforming our target variable.
 X = df_X.drop('meter_reading', axis=1)
-y = df_X['meter_reading']
+y = np.log1p(df_X['meter_reading'])
 
 # Train and Test Split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, shuffle=True, random_state=42)
@@ -67,3 +67,19 @@ print('Lightgbm Regression RMSLE Test: ', np.sqrt(mean_squared_log_error(y_test,
 # Plotting Feature Importance
 df_imp.plot(kind='bar')
 plt.show()
+
+# Kaggle Competition Test Data Prediction and Submission File Creation
+df_X_given_test = pd.read_csv(r'preprocessed-data\df_X_given_test.csv', compression='zip')
+df_X_given_test[l_categorical_features] = df_X_given_test[l_categorical_features].astype('category')
+X_given_test = df_X_given_test.drop('row_id', axis=1)
+
+# Predictions on Competitions Unlabeled Test Data
+y_pred_test = gbm.predict(X_given_test)
+y_pred_test[y_pred_test < 0] = 0
+del X_given_test
+
+# Creating a Kaggle Submission CSV
+df_X_given_test['meter_reading'] = y_pred_test
+df_submission = df_X_given_test.set_index('row_id')['meter_reading'].round(2)
+del df_X_given_test
+df_submission.to_csv(r'sample_submission.csv', header=True)
